@@ -6,11 +6,10 @@ import androidx.lifecycle.ViewModel
 import br.com.alura.technews.repository.NoticiaRepository
 import br.com.alura.technews.repository.Resource
 
-class VisualizaNoticiaViewModel(private val id:Long, private val repository: NoticiaRepository): ViewModel() {
+class VisualizaNoticiaViewModel(id:Long, private val repository: NoticiaRepository): ViewModel() {
 
-    private val noticiaEncontrada = buscaPorId()
+    val noticiaEncontrada = repository.buscaPorId(id)
 
-    fun buscaPorId() = repository.buscaPorId(id)
 
     fun remove(): LiveData<Resource<Void?>>{
         return noticiaEncontrada.value?.run {
